@@ -29,7 +29,7 @@ export default function LoginPage() {
         
         {/* FRASE */}
         <p className="text-gray-300 mt-1 mb-6 text-sm md:text-base uppercase tracking-[0.2em] text-center">
-          SUA AGENDA, CHEIA DE LEITE
+          SUA AGENDA, SEMPRE CHEIA
         </p>
 
         {/* CARD LOGIN (glass iPhone) */}
