@@ -24,18 +24,18 @@ export default function AgendaPage() {
   const agendamentos = [
     {
       hora: "09:00",
-      nome: "João Silva",
+      nome: "Kayky Silva",
       servico: "Corte + Barba"
     },
     {
       hora: "11:00",
-      nome: "Pedro",
+      nome: "Vinicius Polita",
       servico: "Corte"
     },
     {
       hora: "14:00",
-      nome: "Carlos",
-      servico: "Barba"
+      nome: "Rian Carlos",
+      servico: "Corte"
     }
   ]
 
