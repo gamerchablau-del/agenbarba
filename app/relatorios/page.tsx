@@ -1,8 +1,9 @@
 "use client"
 
-import { ArrowLeft, DollarSign, Users, BarChart3 } from "lucide-react"
+import { ArrowLeft, DollarSign, Users, BarChart3, Calendar } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { Bebas_Neue } from 'next/font/google'
+import { useState } from "react"
 
 const bebas = Bebas_Neue({
   weight: '400',
@@ -12,13 +13,23 @@ const bebas = Bebas_Neue({
 export default function RelatoriosPage() {
   const router = useRouter()
 
-  const hoje = new Date()
+  const [dataSelecionada, setDataSelecionada] = useState(new Date())
 
-  const dataFormatada = hoje.toLocaleDateString("pt-BR", {
+  const dataFormatada = dataSelecionada.toLocaleDateString("pt-BR", {
     day: "numeric",
     month: "long",
     year: "numeric"
   })
+
+  // 🔥 FUNÇÃO PARA ABRIR CALENDÁRIO
+  const abrirCalendario = () => {
+    const input = document.getElementById("inputData") as HTMLInputElement
+    if (input?.showPicker) {
+      input.showPicker()
+    } else {
+      input.click()
+    }
+  }
 
   // 🔥 DADOS MOCKADOS
   const faturamento = 320
@@ -46,10 +57,13 @@ export default function RelatoriosPage() {
 
       {/* TOPO */}
       <div className="flex items-center justify-between mb-6">
+
+        {/* VOLTAR */}
         <button onClick={() => router.back()}>
           <ArrowLeft />
         </button>
 
+        {/* TÍTULO */}
         <div className="text-center">
           <div className="flex items-center justify-center gap-2">
             <BarChart3 className="text-orange-500 w-5 h-5" />
@@ -63,10 +77,27 @@ export default function RelatoriosPage() {
           </p>
         </div>
 
-        <div className="w-6" />
+        {/* 📅 CALENDÁRIO FUNCIONAL */}
+        <div
+          onClick={abrirCalendario}
+          className="cursor-pointer bg-zinc-900 p-2 rounded-lg border border-zinc-800 hover:border-orange-500 transition"
+        >
+          <Calendar className="text-orange-500 w-5 h-5" />
+
+          <input
+            id="inputData"
+            type="date"
+            className="absolute opacity-0 pointer-events-none"
+            onChange={(e) => {
+              if (!e.target.value) return
+              setDataSelecionada(new Date(e.target.value))
+            }}
+          />
+        </div>
+
       </div>
 
-      {/* 🔥 CONTAINER DOS CARDS */}
+      {/* CARDS */}
       <div className="bg-zinc-900/70 border border-zinc-800 rounded-2xl p-3 mb-6">
         <div className="grid grid-cols-2 gap-3">
 
@@ -118,7 +149,7 @@ export default function RelatoriosPage() {
         </div>
       </div>
 
-      {/* 🔥 EVOLUÇÃO (100% FUNCIONAL) */}
+      {/* EVOLUÇÃO */}
       <div className="bg-zinc-900 p-4 rounded-2xl border border-zinc-800">
         <p className="text-sm text-orange-500 mb-3">
           Evolução do faturamento
@@ -127,7 +158,6 @@ export default function RelatoriosPage() {
         <div className="flex items-end justify-between h-40">
 
           {evolucao.map((e, i) => {
-            // 🔥 ALTURA EM PIXEL (NUNCA SOME)
             const altura = (e.valor / maxEvolucao) * 120
 
             return (
@@ -135,9 +165,7 @@ export default function RelatoriosPage() {
 
                 <div
                   className="w-8 bg-orange-500 rounded-t"
-                  style={{
-                    height: `${altura}px`
-                  }}
+                  style={{ height: `${altura}px` }}
                 />
 
                 <p className="text-[10px] text-gray-400">
