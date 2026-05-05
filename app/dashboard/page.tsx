@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { CalendarDays, Users, Crown, DollarSign, Clock, Scissors, BarChart3 } from "lucide-react"
 import { Bebas_Neue } from 'next/font/google'
@@ -11,6 +12,15 @@ const bebas = Bebas_Neue({
 
 export default function Dashboard() {
   const router = useRouter()
+
+  // 🔒 PROTEÇÃO DE LOGIN
+  useEffect(() => {
+    const logado = localStorage.getItem("logado")
+
+    if (!logado) {
+      router.push("/")
+    }
+  }, [router])
 
   return (
     <div className="min-h-screen bg-black text-white p-4">
