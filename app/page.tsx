@@ -26,7 +26,7 @@ export default function Home() {
         </p>
 
         <button
-          onClick={() => router.push("/dashboard")}
+          onClick={() => router.push("/login")}
           className="mt-6 bg-orange-500 text-black px-6 py-3 rounded-xl font-semibold hover:scale-105 transition"
         >
           Começar agora 🚀
@@ -75,7 +75,7 @@ export default function Home() {
         </h2>
 
         <button
-          onClick={() => router.push("/dashboard")}
+          onClick={() => router.push("/login")}
           className="mt-6 bg-orange-500 text-black px-6 py-3 rounded-xl font-semibold hover:scale-105 transition"
         >
           Acessar sistema
