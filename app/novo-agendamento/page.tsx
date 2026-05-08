@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useState, Suspense } from "react"
+
 import {
   ArrowLeft,
   User,
@@ -21,7 +22,7 @@ const bebas = Bebas_Neue({
   subsets: ["latin"],
 })
 
-export default function NovoAgendamento() {
+function NovoAgendamentoContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
 
@@ -162,6 +163,7 @@ export default function NovoAgendamento() {
 
               <img
                 src={clienteFoto || ""}
+                alt={clienteNome}
                 className="w-14 h-14 rounded-2xl object-cover"
               />
 
@@ -185,10 +187,10 @@ export default function NovoAgendamento() {
 
               <div className="text-left">
 
-                <p>Cliente</p>
+                <p>Selecionar cliente</p>
 
                 <p className="text-xs text-gray-400">
-                  Nome e número
+                  Toque para escolher
                 </p>
 
               </div>
@@ -352,7 +354,7 @@ export default function NovoAgendamento() {
 
         </div>
       )}
- 
+
       {/* HORÁRIOS */}
       <div className="mb-6">
 
@@ -397,7 +399,7 @@ export default function NovoAgendamento() {
           <div className="flex items-center gap-2">
             <User size={16} />
 
-            Cliente:{" "}
+            Cliente:
 
             {clienteNome || "-"}
           </div>
@@ -429,5 +431,19 @@ export default function NovoAgendamento() {
       </button>
 
     </div>
+  )
+}
+
+export default function NovoAgendamento() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-black text-white flex items-center justify-center">
+          Carregando...
+        </div>
+      }
+    >
+      <NovoAgendamentoContent />
+    </Suspense>
   )
 }
