@@ -120,8 +120,8 @@ export default function Dashboard() {
           </div>
 
           <div
-  onClick={() => router.push("/clientes")}
-  className="bg-zinc-900/70 backdrop-blur-md p-3 rounded-2xl border border-zinc-800 flex flex-col gap-1 active:scale-95 transition cursor-pointer"
+            onClick={() => router.push("/clientes")}
+            className="bg-zinc-900/70 backdrop-blur-md p-3 rounded-2xl border border-zinc-800 flex flex-col gap-1 active:scale-95 transition cursor-pointer"
 >
             <div className="w-9 h-9 rounded-lg bg-orange-500/10 flex items-center justify-center">
               <Users className="text-orange-500 w-5 h-5" />
