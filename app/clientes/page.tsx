@@ -44,7 +44,7 @@ export default function ClientesPage() {
       nome: "Matheus Reinoso",
       telefone: "(11) 97777-7777",
       ultimo: "05/05/2026",
-      foto: "/mat.jpg",
+      foto: "/mat.png",
       vip: true,
     },
     {
