@@ -71,6 +71,7 @@ export default function ClientesPage() {
         </button>
 
         <div className="flex items-center gap-2">
+
           <Scissors className="text-orange-500 w-6 h-6" />
 
           <div>
@@ -84,6 +85,7 @@ export default function ClientesPage() {
               Gerencie seus clientes cadastrados
             </p>
           </div>
+
         </div>
 
         <button
@@ -91,6 +93,7 @@ export default function ClientesPage() {
         >
           <Plus className="text-orange-400 w-5 h-5" />
         </button>
+
       </div>
 
       {/* CARD RESUMO */}
@@ -101,22 +104,27 @@ export default function ClientesPage() {
           <div className="flex items-center gap-4">
 
             <div className="w-14 h-14 rounded-2xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center">
+
               <Users className="text-orange-500 w-7 h-7" />
+
             </div>
 
             <div>
+
               <p className="text-gray-400 text-sm">
                 Total de clientes
               </p>
 
               <h2 className="text-3xl font-bold">
-                128
+                {clientes.length}
               </h2>
+
             </div>
 
           </div>
 
           <div className="text-right border-l border-zinc-800 pl-4">
+
             <p className="text-green-400 font-semibold">
               ↑ 12%
             </p>
@@ -124,15 +132,18 @@ export default function ClientesPage() {
             <p className="text-gray-500 text-xs">
               vs mês passado
             </p>
+
           </div>
 
         </div>
+
       </div>
 
       {/* BUSCA */}
       <div className="flex gap-3 mb-5">
 
         <div className="flex-1 bg-zinc-900/70 border border-zinc-800 rounded-2xl px-4 h-14 flex items-center gap-3">
+
           <Search className="text-gray-500 w-5 h-5" />
 
           <input
@@ -140,10 +151,13 @@ export default function ClientesPage() {
             placeholder="Buscar cliente..."
             className="bg-transparent outline-none w-full text-white placeholder:text-gray-500"
           />
+
         </div>
 
         <button className="w-14 h-14 rounded-2xl bg-zinc-900/70 border border-zinc-800 flex items-center justify-center">
+
           <Filter className="text-gray-400 w-5 h-5" />
+
         </button>
 
       </div>
@@ -154,7 +168,14 @@ export default function ClientesPage() {
         {clientes.map((cliente, index) => (
           <div
             key={index}
-            className="bg-zinc-900/70 border border-zinc-800 rounded-2xl p-3 backdrop-blur-md"
+            onClick={() =>
+              router.push(
+                `/novo-agendamento?nome=${encodeURIComponent(
+                  cliente.nome
+                )}&foto=${encodeURIComponent(cliente.foto)}`
+              )
+            }
+            className="bg-zinc-900/70 border border-zinc-800 rounded-2xl p-3 backdrop-blur-md active:scale-[0.98] transition cursor-pointer"
           >
 
             <div className="flex items-center gap-3">
@@ -177,25 +198,34 @@ export default function ClientesPage() {
 
                   {cliente.vip && (
                     <div className="bg-orange-500/10 border border-orange-500/20 px-2 py-1 rounded-full flex items-center gap-1">
+
                       <Crown className="w-3 h-3 text-orange-400" />
+
                       <span className="text-[10px] text-orange-300">
                         VIP
                       </span>
+
                     </div>
                   )}
 
                 </div>
 
                 <div className="flex items-center gap-2 text-gray-400 text-sm">
+
                   <Phone className="w-4 h-4" />
+
                   <p>{cliente.telefone}</p>
+
                 </div>
 
                 <div className="flex items-center gap-2 text-gray-500 text-xs mt-1">
+
                   <CalendarDays className="w-4 h-4" />
+
                   <p>
                     Último atendimento: {cliente.ultimo}
                   </p>
+
                 </div>
 
               </div>
@@ -203,8 +233,15 @@ export default function ClientesPage() {
               {/* BOTÕES */}
               <div className="flex items-center gap-2">
 
-                <button className="w-12 h-12 rounded-2xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation()
+                  }}
+                  className="w-12 h-12 rounded-2xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center"
+                >
+
                   <Pencil className="text-orange-400 w-5 h-5" />
+
                 </button>
 
                 <ChevronRight className="text-gray-500 w-5 h-5" />
