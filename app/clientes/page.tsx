@@ -41,10 +41,11 @@ export default function ClientesPage() {
       vip: true,
     },
     {
-      nome: "Carlos Ferreira",
+      nome: "Matheus Reinoso",
       telefone: "(11) 97777-7777",
       ultimo: "05/05/2026",
-      foto: "/cliente1.jpg",
+      foto: "/mat.jpg",
+      vip: true,
     },
     {
       nome: "Lucas Alves",
