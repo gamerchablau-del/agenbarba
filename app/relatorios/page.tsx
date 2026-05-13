@@ -10,6 +10,7 @@ const bebas = Bebas_Neue({
   subsets: ['latin'],
 })
 
+
 export default function RelatoriosPage() {
   const router = useRouter()
 
